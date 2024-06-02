@@ -1,0 +1,14 @@
+# Python stuffs
+.python-version
+__pycache__/
+env/
+
+# Workspace stuff
+.vscode/
+*.code-workspace
+
+# Development directories
+/_logs/
+/_build/
+/_worktrees/
+/_tmp/
