@@ -1,0 +1,141 @@
+[flake8]
+# The maximum number of characters that can be on a single line.
+# (set to 88 to match black)
+max-line-length = 88
+
+# Set the maximum length that a comment or docstring line may be. By default, there is
+# no limit on documentation line length
+# (set to 88 to match black)
+max-doc-length = 88
+
+# Set the number of spaces used for indentation
+indent-size = 4
+
+# Require specific plugins to be installed before running
+require-plugins =
+    flake8-annotations
+    pep8-naming
+    mccabe
+
+# A comma separated list of glob patterns to exclude from linting checks
+exclude =
+    .git,
+    __pycache__,
+    build,
+    dist,
+    _worktrees
+
+# A comma separated list of glob patterns to include for linting. If set, only files
+# that match one of the patterns will be linted.
+#include =
+
+# A comma separated list of error codes to ignore. Error codes do not need to be
+# specified exactly, e.g.: to ignore all codes in the F4xx series, use F4. The default
+# list is 'E121,E123,E126,E226,E24,E704,W503,W504'. Since v3.0, this can be combined
+# with the --select option to only ignore errors that are not selected.
+# - ANN101: (flake8-annotations) Missing type annotation for `self` in method
+# - ANN102: (flake8-annotations) Missing type annotation for `cls` in classmethod
+# - ANN002: (flake8-annotations) Missing type annotation for `*args`
+# - ANN003: (flake8-annotations) Missing type annotation for `**kwargs`
+# - C901:   (mccabe) Code too complex
+# - E203:   (pycodestyle) Whitespace before ',
+# - E266:   (pycodestyle) Too many leading '#' for block comment
+#           This removed to allow for nested comments, where increasing levels of
+#           '#' indicate that this step is part of the previous comment/step
+# - W503:   (pycodestyle) Line break occurred before a binary operator
+ignore =
+	ANN101,
+    ANN102,
+	ANN002,
+	ANN003,
+	C901,
+    E203,
+    E266,
+	W503
+
+# Specify a whitelist of error codes you wish Flake8 to report. If this is set, no other
+# codes except those included in this list will be reported. Similar to `ignore`, error
+# codes can be a comma-separated list of codes and need not be specified exactly.
+#select =
+
+# Specify extra error codes to check without disabling the default ones. Some errors are
+# disabled by default and will only be checked if explicitly included in this list.
+# - ANN402: (flake8-annotations) Type comments are disallowed
+extend-select =
+    ANN402,
+
+# Print the total number of errors
+# (set to False so that we can count it ourselves and prettify the report)
+count = False
+
+# Count the number of occurences of each error/warning code and print a report
+# (set to False so that we can count it ourselves and prettify the report)
+statistics = False
+
+# Report only filenames (1) or nothing (2)
+#quiet = 1
+
+# Select the formatter used to display errors. There are two options: "default" and
+# "pylint". Other formatters can be installed, or a customer formatter string can be
+# specified using the variables:
+# $(code), $(col), $(path), $(row), $(text)
+# The default formatter has a string of '%(path)s:%(row)d:%(col)d: %(code)s %(text)s'
+format=default
+
+# Toggle whether pycodestyle should enforce matching the indentation of the opening
+# bracket's line. When specified, it will prefer that you hang the closing bracket
+# on the same line as the opening bracket. When not specified, it will prefer to
+# indent the closing bracket.
+hang-closing = False
+
+# A list of file patterns and error codes to ignore on a per-file basis. Syntax:
+# <filepath>:<error>[,<error>[,...]], e.g.: "some-dir/*:E001,E002,W003"
+# - E402: (pycodestyle) Module level import not at top of file
+per-file-ignores =
+    *.example.py:E402
+
+# Report all errors, even if it is on the same line as a `# NOQA` comment. `# NOQA` can
+# be used to silence messages on specific lines. This facilitates checking which errors
+# are being silenced without editing the file.
+#disable-noqa = True
+
+# Print the source code generating the error/warning in question.
+show-source = False
+
+# Some extensions have the option of registering themselves as OFF by default. These
+# extensions will not be loaded and run unless enabled by this option.
+#enable-extensions = H202,H233,H236,H404,H405,H501
+
+# Specify the number of subprocess that flake8 will use to run checks in parallel. The
+# default value is 'auto', which will use the number of CPUs on your machine.
+jobs = auto
+
+# If an output file has been specified via the `--output-file=...` option, also print
+# output to the console.
+tee = False
+
+# Provide a custom list of builtin functions, objects, names, etc. This allows you to
+# let pyflakes know about builtins it might not immediately recognize so it does not
+# report warnings for using an undefined name.
+#builtins = _,_LE,_LW
+
+# Enable pyflakes syntax checking of doctests in docstrings
+#doctests = True
+
+# Set the maximum allowed McCabe complexity value for a block of code. See:
+# https://en.wikipedia.org/wiki/Cyclomatic_complexity
+# Simple description of values from Tom McCabe himself:
+#    1 - 10: Simple procedure, little risk
+#   11 - 20: More complex, moderate risk
+#   21 - 50: Complex, high risk
+#   50+    : Untestable code, very high risk
+# (we should probably adjust this to be a little lower...)
+max-complexity = 20
+
+# A comma separated list of glob patterns to append to the list of exclude patterns.
+# Mostly useful if using multiple config files or as a command line option via the
+# `--extend-exclude=...` option.
+#extend-exclude =
+
+# A comma separated list of error codes to add to the ignore list.
+#extend-ignore =
